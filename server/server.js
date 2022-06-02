@@ -19,7 +19,9 @@ const io = new Server(server, {
 io.on("connection", socket => {
   console.log(`connection establish for websocket`);
 
-  socket.emit("message", "");
+  socket.broadcast("recieved_message", data => {
+    console.log(data);
+  });
 });
 
 server.listen(PORT, () => {
