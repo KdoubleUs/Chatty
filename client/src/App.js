@@ -3,7 +3,7 @@ import "./App.css";
 import io from "socket.io-client";
 import { useState, useEffect } from "react";
 import Chat from "./Chat";
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("http://localhost:3000");
 
 function App() {
   const [username, setUsername] = useState("");
@@ -28,8 +28,12 @@ function App() {
       {!showChat ? (
         <div className="defaultChat">
           <h3>Chatroom</h3>
-          <input type="text" placeholder="User's name" />
-          <input type="text" placeholder="Room ID " />
+          <input
+            type="text"
+            placeholder="User's name"
+            onChange={userOnChange}
+          />
+          <input type="text" placeholder="Room ID " onChange={roomOnChange} />
           <button onClick={joinRoom}> Join Room </button>
         </div>
       ) : (

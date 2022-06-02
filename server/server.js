@@ -11,7 +11,8 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    //later change to deployment origin
+    origin: "http://localhost:3001",
     methods: ["GET", "POST"],
   },
 });
@@ -30,9 +31,9 @@ io.on("connection", socket => {
     console.log(`user disconnected, ${socket.id}`);
   });
 
-  socket.broadcast("recieved_message", data => {
-    console.log(data);
-  });
+  //   socket.broadcast("recieved_message", data => {
+  //     console.log(data);
+  //   });
 });
 
 server.listen(PORT, () => {
