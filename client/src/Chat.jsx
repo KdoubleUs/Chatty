@@ -1,7 +1,29 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 function Chat({ socket, username, room }) {
   const [message, setMessage] = useState("");
+
+  const sendMessage = () => {
+    if (!message) {
+      const messageData = {
+        room: room,
+        author: username,
+        timeStamp:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      await socket.emit("send_message", data => {
+          console.log(data);
+      })
+    }
+  };
+
+  useEffect(()=> {
+      socket.on("recieved_message", data => {
+
+      })
+  }, [socket])
   return (
     <div>
       <div className="chat-header">
@@ -10,7 +32,7 @@ function Chat({ socket, username, room }) {
       <div className="chat-body"></div>
       <div className="chat-footer">
         <input type="text" />
-        <button>send</button>
+        <button onClick={sendMessage}>send</button>
       </div>
     </div>
   );
