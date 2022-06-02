@@ -18,7 +18,9 @@ function Chat({ socket, username, room }) {
       setMessagelist(msg => [...msg, messageData]);
     }
   };
-
+  const messageOnChange = e => {
+    setMessage(e.target.value);
+  };
   useEffect(() => {
     socket.on("recieved_message", data => {
       setMessagelist(list => [...list, data]);
@@ -35,7 +37,7 @@ function Chat({ socket, username, room }) {
         })}
       </div>
       <div className="chat-footer">
-        <input type="text" />
+        <input type="text" onChange={messageOnChange} />
         <button onClick={sendMessage}>send</button>
       </div>
     </div>
