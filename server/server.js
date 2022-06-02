@@ -19,6 +19,10 @@ const io = new Server(server, {
 io.on("connection", socket => {
   console.log(`connection establish for websocket`);
 
+  socket.on("join_room", data => {
+    socket.join(data);
+    console.log(`user with id: ${socket.id} joined room: ${data}`);
+  });
   socket.broadcast("recieved_message", data => {
     console.log(data);
   });
