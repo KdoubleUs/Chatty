@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function Chat({ socket, username, room }) {
-  const [connected, setConnected] = useState(false);
   const [message, setMessage] = useState("");
   const [messageList, setMessagelist] = useState([]);
   const sendMessage = async () => {
@@ -24,7 +23,7 @@ function Chat({ socket, username, room }) {
   };
 
   useEffect(() => {
-    socket.on("recieved_message", data => {
+    socket.on("receive_message", data => {
       setMessagelist(list => [...list, data]);
     });
   }, [socket]);

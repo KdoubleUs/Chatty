@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import io from "socket.io-client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Chat from "./Chat";
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [username, setUsername] = useState("");
@@ -11,7 +10,7 @@ function App() {
   const [showChat, setShowChat] = useState(false);
 
   const joinRoom = () => {
-    if (username !== "" && room != "") {
+    if (username !== "" && room !== "") {
       socket.emit("join_room", room);
       setShowChat(true);
     }
